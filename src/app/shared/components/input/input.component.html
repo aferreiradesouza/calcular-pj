@@ -1,0 +1,7 @@
+<div class="form-group">
+    <label [ngClass]="{'inline' : type == 'inline'}" *ngIf="label">{{label}}</label>
+
+    <div class="input-group" [ngClass]="{'inline float-right' : type == 'inline'}">
+        <ng-content></ng-content>
+    </div>
+</div>

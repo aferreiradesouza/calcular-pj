@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar class="header">
+    <ion-buttons mode="ios" color="light" slot="start">
+      <ion-back-button [text]="'Voltar'" color="light" (click)="voltar()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Criar calculo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="form">
+    <ion-item>
+      <ion-input formControlName="nome" type="text" placeholder="Nome"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input formControlName="salario" type="text" placeholder="Salario"></ion-input>
+    </ion-item>
+    <input formControlName="nome">
+    {{form.value | json}}
+  </form>
+</ion-content>

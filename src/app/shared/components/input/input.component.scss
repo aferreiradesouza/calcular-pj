@@ -1,0 +1,37 @@
+.form-group {
+    margin-bottom: 0;
+
+    > label {
+        line-height: 2rem;
+    }
+
+    .opcional{
+        font-size: 10px;
+        margin-left: 10px;
+        letter-spacing: 1px;
+    }
+
+    .input-group{
+        position: relative;
+
+        ion-icon{
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translate(0%, -50%);
+            font-size: 20px;
+        }
+
+        .confirmado{
+            color: #02bb02;
+        }
+
+        .wait{
+            color: #ccc;
+        }
+    }
+
+    .sms{
+        height: 40px;
+    }
+}

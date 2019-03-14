@@ -1,0 +1,16 @@
+.header {
+    --background: var(--ion-color-primary);
+    --border-color: none;
+    --color: white;
+  
+    ion-buttons {
+      .backButton {
+        --color: white;
+      }
+    }
+  
+    ion-title {
+      font-weight: normal;
+    }
+  }
+  
