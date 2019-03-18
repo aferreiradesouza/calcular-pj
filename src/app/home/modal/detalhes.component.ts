@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 
@@ -9,9 +9,12 @@ import { ModalController } from '@ionic/angular';
 })
 export class DetalhesComponent implements OnInit {
 
+  @Input() data: any;
+
   constructor(public router: Router, public modalController: ModalController) {}
 
   ngOnInit() {
+    console.log(this.data);
   }
   
   close() {

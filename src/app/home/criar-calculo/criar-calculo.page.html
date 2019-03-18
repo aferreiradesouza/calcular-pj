@@ -1,21 +1,83 @@
 <ion-header>
   <ion-toolbar class="header">
     <ion-buttons mode="ios" color="light" slot="start">
-      <ion-back-button [text]="'Voltar'" color="light" (click)="voltar()"></ion-back-button>
+      <ion-back-button class="show-back-button" [text]="'Voltar'" color="light" (click)="voltar()"></ion-back-button>
     </ion-buttons>
-    <ion-title>Criar calculo</ion-title>
+    <ion-title>Criar cálculo</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
   <form [formGroup]="form">
-    <ion-item>
-      <ion-input formControlName="nome" type="text" placeholder="Nome"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input formControlName="salario" type="text" placeholder="Salario"></ion-input>
-    </ion-item>
-    <input formControlName="nome">
-    {{form.value | json}}
+    <div class="nome">
+      <ion-item>
+        <label for="nome">Nome</label><input formControlName="nome" id="nome">
+      </ion-item>
+    </div>
+    <ion-list>
+      <ion-list-header>
+        <ion-label>Informações</ion-label>
+      </ion-list-header>
+      <ion-item>
+        <label for="valor">Valor por hora</label><input type="tel" currencyMask formControlName="valor" id="valor">
+      </ion-item>
+      <ion-item>
+        <label for="hora">Horas por mês</label><input type="tel" mask="999" formControlName="hora" id="hora">
+      </ion-item>
+      <ion-item>
+        <label for="imposto">Imposto</label><input type="tel" mask="99" sufix="%" formControlName="imposto"
+          id="imposto">
+      </ion-item>
+    </ion-list>
+    <ion-list-header>
+      <ion-label>Informações adicionais (Opcional)</ion-label>
+    </ion-list-header>
+    <ion-list>
+      <ion-item>
+        <label for="previdencia">Previdência</label><input type="tel" currencyMask formControlName="previdencia"
+          id="previdencia">
+      </ion-item>
+      <ion-item>
+        <label for="inss">INSS</label><input type="tel" currencyMask formControlName="inss"
+          id="inss">
+      </ion-item>
+      <ion-item>
+        <label for="contador">Contador</label><input type="tel" currencyMask formControlName="contador"
+          id="contador">
+      </ion-item>
+      <ion-item>
+        <label for="transporte">Transporte</label><input type="tel" currencyMask formControlName="transporte"
+          id="transporte">
+      </ion-item>
+      <ion-item>
+        <label for="alimentacao">Alimentação</label><input type="tel" currencyMask formControlName="alimentacao"
+          id="alimentacao">
+      </ion-item>
+      <ion-item>
+        <label for="odontologico">Plano Odontológico</label><input type="tel" currencyMask formControlName="odontologico"
+          id="odontologico">
+      </ion-item>
+      <ion-item>
+        <label for="saude">Plano de saúde</label><input type="tel" currencyMask formControlName="saude"
+          id="saude">
+      </ion-item>
+      <ion-item>
+        <label for="vida">Seguro de vida</label><input type="tel" currencyMask formControlName="vida"
+          id="vida">
+      </ion-item>
+      <ion-item>
+        <div class="inputGroup">
+          <input id="ferias" type="checkbox" formControlName="ferias">
+          <label for="ferias">
+            Férias
+          </label>
+        </div>
+      </ion-item>
+    </ion-list>
+    <p>{{form.value | json}}</p>
+    <p>{{form.valid | json}}</p>
   </form>
 </ion-content>
+<ion-footer>
+  <ion-button expand="full" [disabled]="!form.valid" (click)="criarCalculo()">Criar</ion-button>
+</ion-footer>

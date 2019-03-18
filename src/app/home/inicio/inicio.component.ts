@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { DetalhesComponent } from '../modal/detalhes.component';
+import { StorageService } from 'src/app/shared/services/local-storage.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'inicio-page',
@@ -10,29 +12,53 @@ import { DetalhesComponent } from '../modal/detalhes.component';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public router: Router, public modalController: ModalController) {}
+  public data: any;
+
+  constructor(public router: Router,
+    public modalController: ModalController,
+    public storageService: StorageService,
+    public navController: NavController) {}
 
   ngOnInit() {
+
+    if (!this.storageService.has('calculos')) {
+      this.storageService.setJson('calculos', []);
+    } else {
+      this.data = this.storageService.getJson('calculos');
+    }
   }
 
   criarCalculo() {
-    this.router.navigate(['home', 'criar-calculo']);
+    this.navController.navigateBack(['home', 'criar-calculo'], {
+      animationDirection: 'forward'
+    });
   }
 
-  teste() {
-    console.log('123131321');
-  }
-
-  async detalhes() {
+  async detalhes(item) {
     const modal = await this.modalController.create({
       component: DetalhesComponent,
-      componentProps: {
-        'prop1': '1',
-        'prop2': '2'
-      }
+      componentProps: {data: item}
     });
     await modal.present();
     const { data } = await modal.onDidDismiss();
     console.log(data);
+  }
+
+  deletar(index) {
+    setTimeout(() => {
+      const data = this.storageService.getJson('calculos');
+      data.splice(index, 1);
+      this.data = data;
+      this.storageService.setJson('calculos', data);
+    }, 200);
+  }
+
+
+  pegarDia(data) {
+    return moment(data).utc().format('DD/MM');
+  }
+
+  pegarHoras(data) {
+    return moment(data).format('HH:mm');
   }
 }

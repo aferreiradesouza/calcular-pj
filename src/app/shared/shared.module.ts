@@ -7,7 +7,7 @@ import { InputComponent } from './components/input/input.component';
     InputComponent
   ],
   exports: [
-    InputComponent
+    InputComponent,
   ],
   imports: [
     CommonModule,

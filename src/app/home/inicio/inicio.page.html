@@ -12,18 +12,18 @@
     <ion-list-header>
       <ion-label>Lista de calculos</ion-label>
     </ion-list-header>
-    <ion-item-sliding>
+    <ion-item-sliding *ngFor=" let item of data; let i = index">
       <ion-item>
         <ion-label>
-          Nome
-          <p>Salvo em:</p>
+          {{item.nome}}
+          <p>Salvo em: {{pegarDia(item.dataCriacao)}} às {{pegarHoras(item.dataCriacao)}}</p>
         </ion-label>
-        <ion-buttons slot="end" (click)="detalhes()" fill="clear" color="primary">
+        <ion-buttons slot="end" (click)="detalhes(item)" fill="clear" color="primary">
           <ion-icon slot="icon-only" name="information-circle-outline"></ion-icon>
         </ion-buttons>
       </ion-item>
-      <ion-item-options side="end" (ionSwipe)="teste()">
-        <ion-item-option color="danger" [expandable]="true">Excluir</ion-item-option>
+      <ion-item-options side="end" (ionSwipe)="deletar(i)">
+        <ion-item-option color="danger" [expandable]="true" (click)="deletar(i)">Excluir</ion-item-option>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
