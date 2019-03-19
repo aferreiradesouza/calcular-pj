@@ -8,7 +8,6 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['detalhes.component.scss'],
 })
 export class DetalhesComponent implements OnInit {
-
   @Input() data: any;
 
   constructor(public router: Router, public modalController: ModalController) {}
@@ -16,10 +15,14 @@ export class DetalhesComponent implements OnInit {
   ngOnInit() {
     console.log(this.data);
   }
-  
+
   close() {
     this.modalController.dismiss({
       'result': 'fechar'
     });
+  }
+
+  transformarCurrency(item) {
+    return 'R$ ' + item.toFixed(2).replace('.', ',');
   }
 }

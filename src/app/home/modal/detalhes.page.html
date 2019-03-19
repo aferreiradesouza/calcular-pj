@@ -1,12 +1,106 @@
 <ion-header>
-    <ion-toolbar class="header">
-        <ion-title>Detalhes do calculo</ion-title>
-        <ion-buttons slot="end" (click)="close()">
-          <ion-icon slot="icon-only" name="close"></ion-icon>
-        </ion-buttons>
-    </ion-toolbar>
+  <ion-toolbar class="header">
+    <ion-title>Detalhes</ion-title>
+    <ion-buttons slot="end" (click)="close()">
+      <ion-icon slot="icon-only" name="close"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  {{this.data | json}}
+  <div class="title">
+    PRINCIPAIS INFORMAÇÕES
+  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div class="label">DESCRIÇÃO</div>
+        {{data.descricao}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div class="label">VALOR POR HORA</div>
+        {{transformarCurrency(data.valor)}}
+      </ion-col>
+      <ion-col>
+        <div class="label">HORAS TRABALHADAS</div>
+        {{data.hora}}h
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="wrapper">
+        <div class="salario">
+          <div class="label wrapper">SALÁRIO</div>
+          {{transformarCurrency(data.salario)}}
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div class="title">
+    DESCONTOS
+  </div>
+  <div class="lista-descontos">
+    <div class="item">
+      <div class="campo">Férias</div>
+      <div class="value">- {{data.ferias ? transformarCurrency(data.ferias) : transformarCurrency(0)}}</div>
+    </div>
+    <div class="item">
+      <div class="campo">Impostos</div>
+      <div class="value">-
+        {{data.impostoValor ? transformarCurrency(data.impostoValor) : transformarCurrency(0)}}</div>
+    </div>
+    <div class="item">
+      <div class="campo">Previdência</div>
+      <div class="value">-
+        {{data.previdencia ? transformarCurrency(data.previdencia) : transformarCurrency(0)}}</div>
+    </div>
+    <div class="item">
+      <div class="campo">INSS</div>
+      <div class="value">- {{data.inss ? transformarCurrency(data.inss) : transformarCurrency(0)}}</div>
+    </div>
+    <div class="item">
+      <div class="campo">Contador</div>
+      <div class="value">- {{data.contador ? transformarCurrency(data.contador) : transformarCurrency(0)}}
+      </div>
+    </div>
+    <div class="item">
+      <div class="campo">Transporte</div>
+      <div class="value">- {{data.transporte ? transformarCurrency(data.transporte) : transformarCurrency(0)}}
+      </div>
+    </div>
+    <div class="item">
+      <div class="campo">Alimentação</div>
+      <div class="value">-
+        {{data.alimentacao ? transformarCurrency(data.alimentacao) : transformarCurrency(0)}}</div>
+    </div>
+    <div class="item">
+      <div class="campo">Plano odontológico</div>
+      <div class="value">-
+        {{data.odontologico ? transformarCurrency(data.odontologico) : transformarCurrency(0)}}</div>
+    </div>
+    <div class="item">
+      <div class="campo">Plano de saúde</div>
+      <div class="value">- {{data.saude ? transformarCurrency(data.saude) : transformarCurrency(0)}}</div>
+    </div>
+    <div class="item">
+      <div class="campo">Seguro de vida</div>
+      <div class="value">- {{data.saude ? transformarCurrency(data.saude) : transformarCurrency(0)}}</div>
+    </div>
+  </div>
+  <div class="resultado">
+    <ion-grid>
+      <ion-row>
+        <ion-col class="info perigo">
+          <div class="campo">Total de desconto</div>
+          <div>{{data.totalGasto ? transformarCurrency(data.totalGasto) : transformarCurrency(0)}}</div>
+        </ion-col>
+        <ion-col class="info sucesso">
+            <div class="campo">Salário líquido</div>
+          <div>{{data.liquido ? transformarCurrency(data.liquido) : transformarCurrency(0)}}</div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  {{data | json}}
 </ion-content>

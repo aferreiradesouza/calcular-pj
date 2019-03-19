@@ -11,8 +11,32 @@ import { StorageService } from 'src/app/shared/services/local-storage.service';
 })
 export class CriarCalculoComponent implements OnInit {
 
+  public customCurrencyMaskConfig = {
+    align: 'left',
+    allowNegative: true,
+    allowZero: true,
+    decimal: ',',
+    precision: 2,
+    prefix: 'R$ ',
+    suffix: '',
+    thousands: '.',
+    nullable: true
+  };
+
+  public customPercent = {
+    align: 'left',
+    allowNegative: false,
+    allowZero: true,
+    decimal: ',',
+    precision: 2,
+    prefix: '',
+    suffix: '%',
+    thousands: '.',
+    nullable: true
+  };
+
   public form = new FormGroup({
-    nome: new FormControl('', [Validators.required]),
+    descricao: new FormControl('', [Validators.required]),
     valor: new FormControl('', [Validators.required]),
     imposto: new FormControl('', [Validators.required, Validators.minLength(1)]),
     hora: new FormControl('', [Validators.required, Validators.minLength(1)]),
@@ -61,7 +85,8 @@ export class CriarCalculoComponent implements OnInit {
       parseFloat(this.form.value.alimentacao ? this.form.value.alimentacao : 0) +
       parseFloat(this.form.value.odontologico ? this.form.value.odontologico : 0) +
       parseFloat(this.form.value.saude ? this.form.value.saude : 0) +
-      parseFloat(this.form.value.vida ? this.form.value.vida : 0);
+      parseFloat(this.form.value.vida ? this.form.value.vida : 0) +
+      parseFloat(String(this.form.value.imposto ? this.calcularImposto : 0));
   }
 
   get calcularSalarioLiquido() {
@@ -78,7 +103,7 @@ export class CriarCalculoComponent implements OnInit {
 
   criarCalculo() {
     const data = {
-      nome: this.form.value.nome,
+      descricao: this.form.value.descricao,
       valor: this.form.value.valor,
       hora: this.form.value.hora,
       imposto: this.form.value.imposto,

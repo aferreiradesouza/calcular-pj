@@ -28,7 +28,8 @@ form > ion-list {
 
     & > label {
       white-space: nowrap;
-      color: #6b6b6b
+      color: #6b6b6b;
+      font-size: 14px;
     }
   }
 }
@@ -39,7 +40,8 @@ form > ion-list {
 
   label {
     white-space: nowrap;
-    color: #6b6b6b
+    color: #6b6b6b;
+    font-size: 14px;
   }
 
   > input {
@@ -67,6 +69,7 @@ ion-footer > ion-button{
     position: relative;
     z-index: 2;
     overflow: hidden;
+    font-size: 14px;
 
     &:before {
       width: 100%;

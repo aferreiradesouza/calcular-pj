@@ -13,17 +13,6 @@ import { SharedModule } from './shared/shared.module';
 import { NgxMaskModule } from 'ngx-mask';
 import { NgxCurrencyModule } from 'ngx-currency';
 
-export const customCurrencyMaskConfig = {
-  align: 'right',
-  allowNegative: true,
-  allowZero: true,
-  decimal: ',',
-  precision: 2,
-  prefix: 'R$ ',
-  suffix: '',
-  thousands: '.',
-  nullable: true
-};
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,7 +22,7 @@ export const customCurrencyMaskConfig = {
     IonicModule.forRoot(),
     AppRoutingModule,
     NgxMaskModule.forRoot(),
-    NgxCurrencyModule.forRoot(customCurrencyMaskConfig),
+    NgxCurrencyModule,
     HomeModule,
     SharedModule],
   providers: [

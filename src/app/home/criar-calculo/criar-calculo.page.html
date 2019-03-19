@@ -11,7 +11,7 @@
   <form [formGroup]="form">
     <div class="nome">
       <ion-item>
-        <label for="nome">Nome</label><input formControlName="nome" id="nome">
+        <label for="descricao">Descrição</label><input formControlName="descricao" id="descricao">
       </ion-item>
     </div>
     <ion-list>
@@ -19,13 +19,13 @@
         <ion-label>Informações</ion-label>
       </ion-list-header>
       <ion-item>
-        <label for="valor">Valor por hora</label><input type="tel" currencyMask formControlName="valor" id="valor">
+        <label for="valor">Valor por hora</label><input type="tel" currencyMask [options]="customCurrencyMaskConfig" formControlName="valor" id="valor">
       </ion-item>
       <ion-item>
         <label for="hora">Horas por mês</label><input type="tel" mask="999" formControlName="hora" id="hora">
       </ion-item>
       <ion-item>
-        <label for="imposto">Imposto</label><input type="tel" mask="99" sufix="%" formControlName="imposto"
+        <label for="imposto">Imposto</label><input type="tel" currencyMask [options]="customPercent" maxlength="6" formControlName="imposto"
           id="imposto">
       </ion-item>
     </ion-list>
@@ -34,35 +34,35 @@
     </ion-list-header>
     <ion-list>
       <ion-item>
-        <label for="previdencia">Previdência</label><input type="tel" currencyMask formControlName="previdencia"
+        <label for="previdencia">Previdência</label><input type="tel" currencyMask [options]="customCurrencyMaskConfig" formControlName="previdencia"
           id="previdencia">
       </ion-item>
       <ion-item>
-        <label for="inss">INSS</label><input type="tel" currencyMask formControlName="inss"
+        <label for="inss">INSS</label><input type="tel" currencyMask [options]="customCurrencyMaskConfig" formControlName="inss"
           id="inss">
       </ion-item>
       <ion-item>
-        <label for="contador">Contador</label><input type="tel" currencyMask formControlName="contador"
+        <label for="contador">Contador</label><input type="tel" currencyMask [options]="customCurrencyMaskConfig" formControlName="contador"
           id="contador">
       </ion-item>
       <ion-item>
-        <label for="transporte">Transporte</label><input type="tel" currencyMask formControlName="transporte"
+        <label for="transporte">Transporte</label><input type="tel" currencyMask [options]="customCurrencyMaskConfig" formControlName="transporte"
           id="transporte">
       </ion-item>
       <ion-item>
-        <label for="alimentacao">Alimentação</label><input type="tel" currencyMask formControlName="alimentacao"
+        <label for="alimentacao">Alimentação</label><input type="tel" currencyMask [options]="customCurrencyMaskConfig" formControlName="alimentacao"
           id="alimentacao">
       </ion-item>
       <ion-item>
-        <label for="odontologico">Plano Odontológico</label><input type="tel" currencyMask formControlName="odontologico"
+        <label for="odontologico">Plano Odontológico</label><input type="tel" currencyMask [options]="customCurrencyMaskConfig" formControlName="odontologico"
           id="odontologico">
       </ion-item>
       <ion-item>
-        <label for="saude">Plano de saúde</label><input type="tel" currencyMask formControlName="saude"
+        <label for="saude">Plano de saúde</label><input type="tel" currencyMask [options]="customCurrencyMaskConfig" formControlName="saude"
           id="saude">
       </ion-item>
       <ion-item>
-        <label for="vida">Seguro de vida</label><input type="tel" currencyMask formControlName="vida"
+        <label for="vida">Seguro de vida</label><input type="tel" currencyMask [options]="customCurrencyMaskConfig" formControlName="vida"
           id="vida">
       </ion-item>
       <ion-item>

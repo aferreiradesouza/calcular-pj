@@ -3,3 +3,78 @@
     --border-color: none;
     --color: white;
 }
+
+ion-grid > ion-row {
+    text-align: center;
+}
+
+.title{
+    font-size: 0.8rem;
+    color: black;
+    padding: 15px 10px;
+    letter-spacing: 0.5px;
+    font-weight: bold;
+}
+
+.label {
+    font-size: 0.7rem;
+    font-weight: bold;
+    opacity: .6;
+}
+
+.wrapper{
+    color: white;
+    opacity: 1;
+
+    > .salario{
+        padding: 10px;
+        background-color: var(--ion-color-primary);
+        border-radius: 7px;
+    }
+}
+
+.lista-descontos{
+    padding: 5px 40px;
+
+    > .item {
+        height: 20px;
+        margin: 7px 0px;
+        width: 100%;
+
+        > .campo {
+            float: left;
+            font-size: 14px;
+        }
+
+        > .value {
+            float: right;
+        }
+    }
+}
+
+.resultado{
+    width: 100%;
+    height: 60px;
+
+    > ion-grid > ion-row > .info {
+        width: calc(100% - 10px);
+
+        > .campo {
+            font-size: 12px;
+        }
+    }
+
+    .perigo {
+        background-color: var(--ion-color-danger-shade);
+        color: white;
+        border-top-left-radius: 7px;
+        border-bottom-left-radius: 7px;
+    }
+
+    .sucesso {
+        background-color: var(--ion-color-success-shade);
+        color: white;
+        border-top-right-radius: 7px;
+        border-bottom-right-radius: 7px;
+    }
+}
