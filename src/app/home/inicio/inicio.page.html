@@ -7,7 +7,7 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [forceOverscroll]="false">
   <ion-list>
     <ion-list-header>
       <ion-label>LISTA DE CÁLCULOS</ion-label>
@@ -22,7 +22,7 @@
           <ion-icon slot="icon-only" name="information-circle-outline"></ion-icon>
         </ion-buttons>
       </ion-item>
-      <ion-item-options side="end" (ionSwipe)="deletar(i)">
+      <ion-item-options side="end">
         <ion-item-option color="danger" [expandable]="true" (click)="deletar(i)">Excluir</ion-item-option>
       </ion-item-options>
     </ion-item-sliding>

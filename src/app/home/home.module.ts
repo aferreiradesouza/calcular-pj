@@ -1,5 +1,5 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID } from '@angular/core';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './inicio/inicio.component';
@@ -9,6 +9,9 @@ import { SharedModule } from '../shared/shared.module';
 import { StorageService } from '../shared/services/local-storage.service';
 import {NgxMaskModule} from 'ngx-mask';
 import { NgxCurrencyModule } from 'ngx-currency';
+import localePt from '@angular/common/locales/pt';
+
+registerLocaleData(localePt);
 
 @NgModule({
   declarations: [
@@ -28,7 +31,8 @@ import { NgxCurrencyModule } from 'ngx-currency';
     NgxCurrencyModule,
   ],
   providers: [
-    StorageService
+    StorageService,
+    { provide: LOCALE_ID, useValue: 'pt' }
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

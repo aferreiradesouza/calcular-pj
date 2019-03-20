@@ -21,8 +21,4 @@ export class DetalhesComponent implements OnInit {
       'result': 'fechar'
     });
   }
-
-  transformarCurrency(item) {
-    return 'R$ ' + item.toFixed(2).replace('.', ',');
-  }
 }

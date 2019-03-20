@@ -16,8 +16,12 @@ ion-grid > ion-row {
     font-weight: bold;
 }
 
+.correcao{
+    padding-top: 0;
+}
+
 .label {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     font-weight: bold;
     opacity: .6;
 }
@@ -30,6 +34,24 @@ ion-grid > ion-row {
         padding: 10px;
         background-color: var(--ion-color-primary);
         border-radius: 7px;
+
+        > .liquido {
+            font-size: 11px;
+        }
+    }
+}
+
+.painel{
+    padding: 0;
+
+        > ion-grid {
+            > ion-row {
+            padding: 0;
+
+            > ion-col {
+                padding: 0;
+            }
+        }
     }
 }
 
@@ -54,27 +76,27 @@ ion-grid > ion-row {
 
 .resultado{
     width: 100%;
-    height: 60px;
+    height: 100%;
 
-    > ion-grid > ion-row > .info {
-        width: calc(100% - 10px);
+    > ion-grid {
+        padding: 0;
 
-        > .campo {
-            font-size: 12px;
+        > ion-row > .info {
+            width: calc(100% - 10px);
+    
+            > .campo {
+                font-size: 12px;
+            }
         }
     }
 
     .perigo {
         background-color: var(--ion-color-danger-shade);
         color: white;
-        border-top-left-radius: 7px;
-        border-bottom-left-radius: 7px;
     }
 
     .sucesso {
         background-color: var(--ion-color-success-shade);
         color: white;
-        border-top-right-radius: 7px;
-        border-bottom-right-radius: 7px;
     }
 }

@@ -8,7 +8,23 @@
 </ion-header>
 
 <ion-content>
-  <div class="title">
+  <ion-grid class="painel">
+    <ion-row>
+      <ion-col>
+        <ion-chip color="danger" [outline]="true">
+          <ion-icon name="trash"></ion-icon>
+          <ion-label>Excluir</ion-label>
+        </ion-chip>
+      </ion-col>
+      <ion-col>
+        <ion-chip color="warning" [outline]="true">
+          <ion-icon name="create"></ion-icon>
+          <ion-label>Editar</ion-label>
+        </ion-chip>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div class="title correcao">
     PRINCIPAIS INFORMAÇÕES
   </div>
   <ion-grid>
@@ -20,19 +36,23 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <div class="label">VALOR POR HORA</div>
-        {{transformarCurrency(data.valor)}}
+        <div class="label">HORAS</div>
+        {{data.hora}}h
       </ion-col>
       <ion-col>
-        <div class="label">HORAS TRABALHADAS</div>
-        {{data.hora}}h
+        <div class="label">VALOR POR HORA</div>
+        {{data.valor | currency:'R$'}}
+      </ion-col>
+      <ion-col>
+        <div class="label">IMPOSTOS</div>
+        {{data.imposto}}%
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col class="wrapper">
         <div class="salario">
           <div class="label wrapper">SALÁRIO</div>
-          {{transformarCurrency(data.salario)}}
+          {{data.salario | currency:'R$'}} <span class="liquido">({{data.liquido | currency:'R$'}})</span>
         </div>
       </ion-col>
     </ion-row>
@@ -43,64 +63,65 @@
   <div class="lista-descontos">
     <div class="item">
       <div class="campo">Férias</div>
-      <div class="value">- {{data.ferias ? transformarCurrency(data.ferias) : transformarCurrency(0)}}</div>
+      <div class="value">- {{(data.ferias ? data.ferias : 0) | currency:'R$'}}</div>
     </div>
     <div class="item">
       <div class="campo">Impostos</div>
       <div class="value">-
-        {{data.impostoValor ? transformarCurrency(data.impostoValor) : transformarCurrency(0)}}</div>
+        {{(data.impostoValor ? data.impostoValor : 0) | currency:'R$'}}</div>
     </div>
     <div class="item">
       <div class="campo">Previdência</div>
       <div class="value">-
-        {{data.previdencia ? transformarCurrency(data.previdencia) : transformarCurrency(0)}}</div>
+        {{(data.previdencia ? data.previdencia : 0) | currency:'R$'}}</div>
     </div>
     <div class="item">
       <div class="campo">INSS</div>
-      <div class="value">- {{data.inss ? transformarCurrency(data.inss) : transformarCurrency(0)}}</div>
+      <div class="value">- {{(data.inss ? data.inss : 0) | currency:'R$'}}</div>
     </div>
     <div class="item">
       <div class="campo">Contador</div>
-      <div class="value">- {{data.contador ? transformarCurrency(data.contador) : transformarCurrency(0)}}
+      <div class="value">- {{(data.contador ? data.contador : 0) | currency:'R$'}}
       </div>
     </div>
     <div class="item">
       <div class="campo">Transporte</div>
-      <div class="value">- {{data.transporte ? transformarCurrency(data.transporte) : transformarCurrency(0)}}
+      <div class="value">- {{(data.transporte ? data.transporte : 0) | currency:'R$'}}
       </div>
     </div>
     <div class="item">
       <div class="campo">Alimentação</div>
       <div class="value">-
-        {{data.alimentacao ? transformarCurrency(data.alimentacao) : transformarCurrency(0)}}</div>
+        {{(data.alimentacao ? data.alimentacao : 0) | currency:'R$'}}</div>
     </div>
     <div class="item">
       <div class="campo">Plano odontológico</div>
       <div class="value">-
-        {{data.odontologico ? transformarCurrency(data.odontologico) : transformarCurrency(0)}}</div>
+        {{(data.odontologico ? data.odontologico : 0) | currency:'R$'}}</div>
     </div>
     <div class="item">
       <div class="campo">Plano de saúde</div>
-      <div class="value">- {{data.saude ? transformarCurrency(data.saude) : transformarCurrency(0)}}</div>
+      <div class="value">- {{(data.saude ? data.saude : 0) | currency:'R$'}}</div>
     </div>
     <div class="item">
       <div class="campo">Seguro de vida</div>
-      <div class="value">- {{data.saude ? transformarCurrency(data.saude) : transformarCurrency(0)}}</div>
+      <div class="value">- {{(data.saude ? data.saude : 0) | currency:'R$'}}</div>
     </div>
   </div>
+</ion-content>
+<ion-footer>
   <div class="resultado">
     <ion-grid>
       <ion-row>
         <ion-col class="info perigo">
           <div class="campo">Total de desconto</div>
-          <div>{{data.totalGasto ? transformarCurrency(data.totalGasto) : transformarCurrency(0)}}</div>
+          <div>{{(data.totalGasto ? data.totalGasto : 0) | currency:'R$'}}</div>
         </ion-col>
         <ion-col class="info sucesso">
-            <div class="campo">Salário líquido</div>
-          <div>{{data.liquido ? transformarCurrency(data.liquido) : transformarCurrency(0)}}</div>
+          <div class="campo">Salário líquido</div>
+          <div>{{(data.liquido ? data.liquido : 0) | currency:'R$'}}</div>
         </ion-col>
       </ion-row>
     </ion-grid>
   </div>
-  {{data | json}}
-</ion-content>
+</ion-footer>

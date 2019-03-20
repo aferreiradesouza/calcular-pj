@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   constructor(public router: Router,
     public modalController: ModalController,
     public storageService: StorageService,
-    public navController: NavController) {}
+    public navController: NavController) { }
 
   ngOnInit() {
 
@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
   async detalhes(item) {
     const modal = await this.modalController.create({
       component: DetalhesComponent,
-      componentProps: {data: item}
+      componentProps: { data: item }
     });
     await modal.present();
     const { data } = await modal.onDidDismiss();
@@ -45,12 +45,10 @@ export class HomeComponent implements OnInit {
   }
 
   deletar(index) {
-    setTimeout(() => {
-      const data = this.storageService.getJson('calculos');
-      data.splice(index, 1);
-      this.data = data;
-      this.storageService.setJson('calculos', data);
-    }, 200);
+    const data = this.storageService.getJson('calculos');
+    data.splice(index, 1);
+    this.data = data;
+    this.storageService.setJson('calculos', data);
   }
 
 
