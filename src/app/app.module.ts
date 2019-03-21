@@ -16,7 +16,6 @@ import { NgxCurrencyModule } from 'ngx-currency';
 
 @NgModule({
   declarations: [AppComponent],
-  entryComponents: [],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

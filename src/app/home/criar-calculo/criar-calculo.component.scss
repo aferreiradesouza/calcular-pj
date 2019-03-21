@@ -18,6 +18,7 @@ input{
   width: calc(100% - 50px);
   outline: none;
   margin-left: 10px;
+  background-color: transparent;
 }
 
 form > ion-list {
@@ -51,8 +52,12 @@ form > ion-list {
   }
 }
 
-ion-footer > ion-button{
-  margin: 0 0;
+
+ion-footer {
+  
+  > ion-button{
+    margin: 0 0;
+  } 
 }
 
 .inputGroup {

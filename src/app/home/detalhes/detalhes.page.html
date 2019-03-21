@@ -1,9 +1,9 @@
 <ion-header>
   <ion-toolbar class="header">
-    <ion-title>Detalhes</ion-title>
-    <ion-buttons slot="end" (click)="close()">
-      <ion-icon slot="icon-only" name="close"></ion-icon>
+    <ion-buttons mode="ios" color="light" slot="start">
+      <ion-back-button class="show-back-button" [text]="'Voltar'" color="light" (click)="voltar()"></ion-back-button>
     </ion-buttons>
+    <ion-title>Detalhes</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,16 +11,16 @@
   <ion-grid class="painel">
     <ion-row>
       <ion-col>
-        <ion-chip color="danger" [outline]="true">
-          <ion-icon name="trash"></ion-icon>
-          <ion-label>Excluir</ion-label>
-        </ion-chip>
+          <ion-button size="small" color="danger" fill="clear" (click)="excluir()">
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+            <ion-label>Excluir</ion-label>
+          </ion-button>
       </ion-col>
       <ion-col>
-        <ion-chip color="warning" [outline]="true">
-          <ion-icon name="create"></ion-icon>
+        <ion-button size="small" color="primary" fill="clear" (click)="editar()">
+          <ion-icon slot="icon-only" name="create"></ion-icon>
           <ion-label>Editar</ion-label>
-        </ion-chip>
+        </ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -45,7 +45,7 @@
       </ion-col>
       <ion-col>
         <div class="label">IMPOSTOS</div>
-        {{data.imposto}}%
+        {{data.imposto | number:'1.1-2'}}%
       </ion-col>
     </ion-row>
     <ion-row>
@@ -105,7 +105,11 @@
     </div>
     <div class="item">
       <div class="campo">Seguro de vida</div>
-      <div class="value">- {{(data.saude ? data.saude : 0) | currency:'R$'}}</div>
+      <div class="value">- {{(data.vida ? data.vida : 0) | currency:'R$'}}</div>
+    </div>
+    <div class="item">
+      <div class="campo">Outros gastos</div>
+      <div class="value">- {{(data.outros ? data.outros : 0) | currency:'R$'}}</div>
     </div>
   </div>
 </ion-content>

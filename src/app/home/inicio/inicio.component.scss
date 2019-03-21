@@ -3,3 +3,23 @@
     --border-color: none;
     --color: white;
 }
+
+.error-lista{
+    width: 100%;
+    text-align: center;
+    padding: 30px;
+
+    > .title {
+        font-size: 17px;
+        color: #696969;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+}
+
+ion-list > ion-item-sliding > ion-item > ion-label {
+
+    > .desc {
+        font-weight: bold;
+    }
+}

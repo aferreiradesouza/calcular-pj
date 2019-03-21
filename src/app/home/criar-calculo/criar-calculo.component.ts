@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { StorageService } from 'src/app/shared/services/local-storage.service';
@@ -35,6 +35,10 @@ export class CriarCalculoComponent implements OnInit {
     nullable: true
   };
 
+  public action: string;
+  public guid: string;
+  public calculo: any;
+
   public form = new FormGroup({
     descricao: new FormControl('', [Validators.required]),
     valor: new FormControl('', [Validators.required]),
@@ -49,9 +53,24 @@ export class CriarCalculoComponent implements OnInit {
     odontologico: new FormControl(''),
     saude: new FormControl(''),
     vida: new FormControl(''),
+    outros: new FormControl(''),
   });
 
-  constructor(public router: Router, public navController: NavController, public fb: FormBuilder, public storageService: StorageService) {
+  constructor(public router: Router,
+    public navController: NavController,
+    public fb: FormBuilder,
+    public storageService: StorageService,
+    public route: ActivatedRoute) {
+
+    this.action = this.route.snapshot.data['action'];
+    if (this.action) {
+      this.route.paramMap.subscribe(params => {
+        this.guid = params.get('guid');
+        const calculos = this.storageService.getJson('calculos');
+
+        this.calculo = calculos.filter(e => e.guid === this.guid)[0];
+      });
+    }
   }
 
   ngOnInit() {
@@ -59,10 +78,20 @@ export class CriarCalculoComponent implements OnInit {
     if (!this.storageService.has('calculos')) {
       this.storageService.setJson('calculos', []);
     }
+
+    if (this.action) {
+      this.preencherFormulario();
+    }
+
+    console.log(this.index);
   }
 
   voltar() {
-    this.navController.navigateBack('home');
+    if (this.action) {
+      this.navController.navigateBack(['home', 'detalhes', this.guid]);
+    } else {
+      this.navController.navigateBack('home');
+    }
   }
 
   get calcularSalario() {
@@ -86,7 +115,9 @@ export class CriarCalculoComponent implements OnInit {
       parseFloat(this.form.value.odontologico ? this.form.value.odontologico : 0) +
       parseFloat(this.form.value.saude ? this.form.value.saude : 0) +
       parseFloat(this.form.value.vida ? this.form.value.vida : 0) +
-      parseFloat(String(this.form.value.imposto ? this.calcularImposto : 0));
+      parseFloat(this.form.value.outros ? this.form.value.outros : 0) +
+      parseFloat(String(this.form.value.imposto ? this.calcularImposto : 0)) +
+      parseFloat(String(this.form.value.ferias ? this.calcularFerias : 0));
   }
 
   get calcularSalarioLiquido() {
@@ -94,10 +125,39 @@ export class CriarCalculoComponent implements OnInit {
   }
 
   get criarGuid() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-// tslint:disable-next-line: no-bitwise
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      // tslint:disable-next-line: no-bitwise
       const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
       return v.toString(16);
+    });
+  }
+
+  get index() {
+    let indexObj;
+    this.storageService.getJson('calculos').forEach((element, index) => {
+      if (this.guid === element.guid) {
+        indexObj = index;
+      }
+    });
+    return indexObj;
+  }
+
+  preencherFormulario() {
+    this.form.patchValue({
+      descricao: this.calculo.descricao,
+      valor: this.calculo.valor,
+      imposto: this.calculo.imposto,
+      hora: this.calculo.hora,
+      ferias: <boolean>this.calculo.ferias,
+      previdencia: this.calculo.previdencia,
+      inss: this.calculo.inss,
+      contador: this.calculo.contador,
+      transporte: this.calculo.transporte,
+      alimentacao: this.calculo.alimentacao,
+      odontologico: this.calculo.odontologico,
+      saude: this.calculo.saude,
+      vida: this.calculo.vida,
+      outros: this.calculo.outros
     });
   }
 
@@ -121,12 +181,25 @@ export class CriarCalculoComponent implements OnInit {
       totalGasto: this.calcularTotalGasto,
       liquido: this.calcularSalarioLiquido,
       dataCriacao: new Date(),
-      guid: this.criarGuid
+      guid: this.action ? this.calculo.guid : this.criarGuid,
+      outros: this.form.value.outros,
     };
-    const lista = this.storageService.getJson('calculos');
-    lista.push(data);
+    if (this.action) {
+      const lista = this.storageService.getJson('calculos');
 
-    this.storageService.setJson('calculos', lista);
-    this.voltar();
+      const index = this.index;
+      lista[index] = data;
+
+      this.storageService.setJson('calculos', lista);
+      this.voltar();
+    } else {
+      const lista = this.storageService.getJson('calculos');
+      lista.push(data);
+
+      this.storageService.setJson('calculos', lista);
+      this.navController.navigateBack(['home', 'detalhes', data.guid], {
+        animationDirection: 'forward'
+      });
+    }
   }
 }

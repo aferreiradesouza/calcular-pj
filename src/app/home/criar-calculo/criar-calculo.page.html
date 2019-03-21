@@ -3,7 +3,7 @@
     <ion-buttons mode="ios" color="light" slot="start">
       <ion-back-button class="show-back-button" [text]="'Voltar'" color="light" (click)="voltar()"></ion-back-button>
     </ion-buttons>
-    <ion-title>Criar cálculo</ion-title>
+    <ion-title>{{this.action ? 'Editar' : 'Criar cálculo'}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -16,17 +16,18 @@
     </div>
     <ion-list>
       <ion-list-header>
-        <ion-label>Informações</ion-label>
+        <ion-label>Informações (Obrigatório)</ion-label>
       </ion-list-header>
       <ion-item>
-        <label for="valor">Valor por hora</label><input type="tel" currencyMask [options]="customCurrencyMaskConfig" formControlName="valor" id="valor">
+        <label for="valor">Valor por hora</label><input type="tel" currencyMask [options]="customCurrencyMaskConfig"
+          formControlName="valor" id="valor">
       </ion-item>
       <ion-item>
-        <label for="hora">Horas por mês</label><input type="tel" mask="999" formControlName="hora" id="hora">
+        <label for="hora">Horas por mês</label><input type="tel" mask="999" sufix="h" formControlName="hora" id="hora">
       </ion-item>
       <ion-item>
-        <label for="imposto">Imposto</label><input type="tel" currencyMask [options]="customPercent" maxlength="6" formControlName="imposto"
-          id="imposto">
+        <label for="imposto">Imposto</label><input type="tel" currencyMask [options]="customPercent" maxlength="6"
+          formControlName="imposto" id="imposto">
       </ion-item>
     </ion-list>
     <ion-list-header>
@@ -34,36 +35,40 @@
     </ion-list-header>
     <ion-list>
       <ion-item>
-        <label for="previdencia">Previdência</label><input type="tel" currencyMask [options]="customCurrencyMaskConfig" formControlName="previdencia"
-          id="previdencia">
+        <label for="previdencia">Previdência</label><input type="tel" currencyMask [options]="customCurrencyMaskConfig"
+          formControlName="previdencia" id="previdencia">
       </ion-item>
       <ion-item>
-        <label for="inss">INSS</label><input type="tel" currencyMask [options]="customCurrencyMaskConfig" formControlName="inss"
-          id="inss">
+        <label for="inss">INSS</label><input type="tel" currencyMask [options]="customCurrencyMaskConfig"
+          formControlName="inss" id="inss">
       </ion-item>
       <ion-item>
-        <label for="contador">Contador</label><input type="tel" currencyMask [options]="customCurrencyMaskConfig" formControlName="contador"
-          id="contador">
+        <label for="contador">Contador</label><input type="tel" currencyMask [options]="customCurrencyMaskConfig"
+          formControlName="contador" id="contador">
       </ion-item>
       <ion-item>
-        <label for="transporte">Transporte</label><input type="tel" currencyMask [options]="customCurrencyMaskConfig" formControlName="transporte"
-          id="transporte">
+        <label for="transporte">Transporte</label><input type="tel" currencyMask [options]="customCurrencyMaskConfig"
+          formControlName="transporte" id="transporte">
       </ion-item>
       <ion-item>
-        <label for="alimentacao">Alimentação</label><input type="tel" currencyMask [options]="customCurrencyMaskConfig" formControlName="alimentacao"
-          id="alimentacao">
+        <label for="alimentacao">Alimentação</label><input type="tel" currencyMask [options]="customCurrencyMaskConfig"
+          formControlName="alimentacao" id="alimentacao">
       </ion-item>
       <ion-item>
-        <label for="odontologico">Plano Odontológico</label><input type="tel" currencyMask [options]="customCurrencyMaskConfig" formControlName="odontologico"
-          id="odontologico">
+        <label for="odontologico">Plano Odontológico</label><input type="tel" currencyMask
+          [options]="customCurrencyMaskConfig" formControlName="odontologico" id="odontologico">
       </ion-item>
       <ion-item>
-        <label for="saude">Plano de saúde</label><input type="tel" currencyMask [options]="customCurrencyMaskConfig" formControlName="saude"
-          id="saude">
+        <label for="saude">Plano de saúde</label><input type="tel" currencyMask [options]="customCurrencyMaskConfig"
+          formControlName="saude" id="saude">
       </ion-item>
       <ion-item>
-        <label for="vida">Seguro de vida</label><input type="tel" currencyMask [options]="customCurrencyMaskConfig" formControlName="vida"
-          id="vida">
+        <label for="vida">Seguro de vida</label><input type="tel" currencyMask [options]="customCurrencyMaskConfig"
+          formControlName="vida" id="vida">
+      </ion-item>
+      <ion-item>
+        <label for="outros">Outros gastos</label><input type="tel" currencyMask [options]="customCurrencyMaskConfig"
+          formControlName="outros" id="outros">
       </ion-item>
       <ion-item>
         <div class="inputGroup">
@@ -77,5 +82,5 @@
   </form>
 </ion-content>
 <ion-footer>
-  <ion-button expand="full" [disabled]="!form.valid" (click)="criarCalculo()">Criar</ion-button>
+  <ion-button expand="full" [disabled]="!form.valid" (click)="criarCalculo()">{{this.action ? 'Editar' : 'Criar'}}</ion-button>
 </ion-footer>

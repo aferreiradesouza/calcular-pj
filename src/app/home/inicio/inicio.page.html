@@ -1,21 +1,35 @@
 <ion-header>
-    <ion-toolbar class="header">
-        <ion-title>Calculo PJ</ion-title>
-        <ion-buttons slot="end" (click)="criarCalculo()">
-          <ion-icon slot="icon-only" name="add"></ion-icon>
-        </ion-buttons>
-    </ion-toolbar>
+  <ion-toolbar class="header">
+    <ion-title>Cálculo PJ</ion-title>
+    <ion-buttons slot="end" (click)="criarCalculo()">
+      <ion-icon slot="icon-only" name="add"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content [forceOverscroll]="false">
-  <ion-list>
+  <div class="error-lista" *ngIf="data.length === 0">
+    <div class="title">Você não tem nenhum cálculo :(</div>
+    <div>
+      <ion-chip color="primary" [outline]="true" (click)="criarCalculo()">
+        <ion-icon name="add"></ion-icon>
+        <ion-label>Criar novo cálculo</ion-label>
+      </ion-chip>
+    </div>
+  </div>
+  <ion-list *ngIf="data.length > 0">
     <ion-list-header>
       <ion-label>LISTA DE CÁLCULOS</ion-label>
     </ion-list-header>
     <ion-item-sliding *ngFor=" let item of data; let i = index">
       <ion-item>
         <ion-label>
-          {{item.descricao}}
+          <div class="desc">{{item.descricao}}</div>
+          <p class="hora">Horas trabalhadas: {{item.hora}}h</p>
+          <p class="valor-hora">Valor por hora: {{item.valor | currency:'R$'}}</p>
+          <p class="imposto">Impostos: {{item.imposto | number:'1.1-2'}}%</p>
+          <p class="salario">Salário bruto: {{item.salario | currency:'R$'}}</p>
+          <p class="salario-liq">Salário líquido: {{item.liquido | currency:'R$'}}</p>
           <p>Salvo em: {{pegarDia(item.dataCriacao)}} às {{pegarHoras(item.dataCriacao)}}</p>
         </ion-label>
         <ion-buttons slot="end" (click)="detalhes(item)" fill="clear" color="primary">

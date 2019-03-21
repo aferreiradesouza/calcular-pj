@@ -93,10 +93,12 @@ ion-grid > ion-row {
     .perigo {
         background-color: var(--ion-color-danger-shade);
         color: white;
+        padding: 10px;
     }
 
     .sucesso {
         background-color: var(--ion-color-success-shade);
         color: white;
+        padding: 10px;
     }
 }

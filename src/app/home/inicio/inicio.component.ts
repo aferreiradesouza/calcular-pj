@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController, NavController } from '@ionic/angular';
-import { DetalhesComponent } from '../modal/detalhes.component';
 import { StorageService } from 'src/app/shared/services/local-storage.service';
 import * as moment from 'moment';
 
@@ -35,13 +34,10 @@ export class HomeComponent implements OnInit {
   }
 
   async detalhes(item) {
-    const modal = await this.modalController.create({
-      component: DetalhesComponent,
-      componentProps: { data: item }
+    const guid = item.guid;
+    this.navController.navigateBack(['home', 'detalhes', guid], {
+      animationDirection: 'forward'
     });
-    await modal.present();
-    const { data } = await modal.onDidDismiss();
-    console.log(data);
   }
 
   deletar(index) {
