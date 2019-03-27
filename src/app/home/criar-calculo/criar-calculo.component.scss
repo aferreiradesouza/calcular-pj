@@ -52,12 +52,27 @@ form > ion-list {
   }
 }
 
+.button-native {
+  padding-bottom: env(safe-area-inset-bottom) !important;
+}
 
 ion-footer {
+  height: calc(env(safe-area-inset-bottom) + 45px);
   
+  .text-button{
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
   > ion-button{
     margin: 0 0;
+    height: 100%;
+    width: 100%;
+    
   } 
+}
+
+.disabled {
+
 }
 
 .inputGroup {

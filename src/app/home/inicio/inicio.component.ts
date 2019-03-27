@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
 
     if (!this.storageService.has('calculos')) {
       this.storageService.setJson('calculos', []);
+      this.data = this.storageService.getJson('calculos');
     } else {
       this.data = this.storageService.getJson('calculos');
     }
@@ -38,6 +39,10 @@ export class HomeComponent implements OnInit {
     this.navController.navigateBack(['home', 'detalhes', guid], {
       animationDirection: 'forward'
     });
+  }
+
+  calcularHoraEfetivo(liquido, hora) {
+    return liquido / hora;
   }
 
   deletar(index) {

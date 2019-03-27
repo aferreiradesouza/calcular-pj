@@ -27,13 +27,14 @@
           <div class="desc">{{item.descricao}}</div>
           <p class="hora">Horas trabalhadas: {{item.hora}}h</p>
           <p class="valor-hora">Valor por hora: {{item.valor | currency:'R$'}}</p>
+          <p class="valor-hora">Valor por hora efetivo: {{calcularHoraEfetivo(item.liquido, item.hora) | currency:'R$'}}</p>
           <p class="imposto">Impostos: {{item.imposto | number:'1.1-2'}}%</p>
           <p class="salario">Salário bruto: {{item.salario | currency:'R$'}}</p>
           <p class="salario-liq">Salário líquido: {{item.liquido | currency:'R$'}}</p>
           <p>Salvo em: {{pegarDia(item.dataCriacao)}} às {{pegarHoras(item.dataCriacao)}}</p>
         </ion-label>
         <ion-buttons slot="end" (click)="detalhes(item)" fill="clear" color="primary">
-          <ion-icon slot="icon-only" name="information-circle-outline"></ion-icon>
+          <ion-icon slot="icon-only" name="arrow-forward"></ion-icon>
         </ion-buttons>
       </ion-item>
       <ion-item-options side="end">

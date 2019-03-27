@@ -23,7 +23,7 @@
           formControlName="valor" id="valor">
       </ion-item>
       <ion-item>
-        <label for="hora">Horas por mês</label><input type="tel" mask="999" sufix="h" formControlName="hora" id="hora">
+        <label for="hora">Horas por mês</label><input type="tel" mask="999" formControlName="hora" id="hora">
       </ion-item>
       <ion-item>
         <label for="imposto">Imposto</label><input type="tel" currencyMask [options]="customPercent" maxlength="6"
@@ -35,7 +35,15 @@
     </ion-list-header>
     <ion-list>
       <ion-item>
-        <label for="previdencia">Previdência</label><input type="tel" currencyMask [options]="customCurrencyMaskConfig"
+        <div class="inputGroup">
+          <input id="ferias" type="checkbox" formControlName="ferias">
+          <label for="ferias">
+            Férias
+          </label>
+        </div>
+      </ion-item>
+      <ion-item>
+        <label for="previdencia">Previdência privada</label><input type="tel" currencyMask [options]="customCurrencyMaskConfig"
           formControlName="previdencia" id="previdencia">
       </ion-item>
       <ion-item>
@@ -70,17 +78,9 @@
         <label for="outros">Outros gastos</label><input type="tel" currencyMask [options]="customCurrencyMaskConfig"
           formControlName="outros" id="outros">
       </ion-item>
-      <ion-item>
-        <div class="inputGroup">
-          <input id="ferias" type="checkbox" formControlName="ferias">
-          <label for="ferias">
-            Férias
-          </label>
-        </div>
-      </ion-item>
     </ion-list>
   </form>
 </ion-content>
-<ion-footer>
-  <ion-button expand="full" [disabled]="!form.valid" (click)="criarCalculo()">{{this.action ? 'Editar' : 'Criar'}}</ion-button>
+<ion-footer disabled>
+  <ion-button expand="full" [disabled]="!form.valid" (click)="criarCalculo()"><div class="text-button">{{this.action ? 'Editar' : 'Criar'}}</div></ion-button>
 </ion-footer>

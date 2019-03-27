@@ -11,10 +11,10 @@
   <ion-grid class="painel">
     <ion-row>
       <ion-col>
-          <ion-button size="small" color="danger" fill="clear" (click)="excluir()">
-            <ion-icon slot="icon-only" name="trash"></ion-icon>
-            <ion-label>Excluir</ion-label>
-          </ion-button>
+        <ion-button size="small" color="danger" fill="clear" (click)="excluir()">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+          <ion-label>Excluir</ion-label>
+        </ion-button>
       </ion-col>
       <ion-col>
         <ion-button size="small" color="primary" fill="clear" (click)="editar()">
@@ -33,19 +33,23 @@
         <div class="label">DESCRIÇÃO</div>
         {{data.descricao}}
       </ion-col>
-    </ion-row>
-    <ion-row>
+      <ion-col>
+        <div class="label">IMPOSTOS</div>
+        {{data.imposto | number:'1.1-2'}}%
+      </ion-col>
       <ion-col>
         <div class="label">HORAS</div>
         {{data.hora}}h
       </ion-col>
+    </ion-row>
+    <ion-row>
       <ion-col>
         <div class="label">VALOR POR HORA</div>
         {{data.valor | currency:'R$'}}
       </ion-col>
       <ion-col>
-        <div class="label">IMPOSTOS</div>
-        {{data.imposto | number:'1.1-2'}}%
+        <div class="label">VALOR POR HORA EFETIVO</div>
+        {{calcularHoraEfetivo | currency:'R$'}}
       </ion-col>
     </ion-row>
     <ion-row>
@@ -118,12 +122,16 @@
     <ion-grid>
       <ion-row>
         <ion-col class="info perigo">
-          <div class="campo">Total de desconto</div>
-          <div>{{(data.totalGasto ? data.totalGasto : 0) | currency:'R$'}}</div>
+          <div class="correcao">
+            <div class="campo">Total de desconto</div>
+            <div>{{(data.totalGasto ? data.totalGasto : 0) | currency:'R$'}}</div>
+          </div>
         </ion-col>
         <ion-col class="info sucesso">
-          <div class="campo">Salário líquido</div>
-          <div>{{(data.liquido ? data.liquido : 0) | currency:'R$'}}</div>
+          <div class="correcao">
+            <div class="campo">Salário líquido</div>
+            <div>{{(data.liquido ? data.liquido : 0) | currency:'R$'}}</div>
+          </div>
         </ion-col>
       </ion-row>
     </ion-grid>

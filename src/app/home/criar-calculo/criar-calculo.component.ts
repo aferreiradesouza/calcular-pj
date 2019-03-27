@@ -44,7 +44,7 @@ export class CriarCalculoComponent implements OnInit {
     valor: new FormControl('', [Validators.required]),
     imposto: new FormControl('', [Validators.required, Validators.minLength(1)]),
     hora: new FormControl('', [Validators.required, Validators.minLength(1)]),
-    ferias: new FormControl(false),
+    ferias: new FormControl(true),
     previdencia: new FormControl(''),
     inss: new FormControl(''),
     contador: new FormControl(''),
