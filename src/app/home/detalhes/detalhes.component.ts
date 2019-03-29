@@ -41,6 +41,10 @@ export class DetalhesComponent implements OnInit {
     });
   }
 
+  get calcularHoraEfetivo() {
+    return this.data.liquido / this.data.hora;
+  }
+
   async excluir() {
     const alert = await this.alertController.create({
       header: 'Excluir cálculo',

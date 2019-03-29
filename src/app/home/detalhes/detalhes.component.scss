@@ -78,6 +78,7 @@ ion-grid > ion-row {
     width: 100%;
     height: 100%;
 
+
     > ion-grid {
         padding: 0;
 
@@ -88,6 +89,10 @@ ion-grid > ion-row {
                 font-size: 12px;
             }
         }
+    }
+
+    .correcao{
+        padding-bottom: env(safe-area-inset-bottom);
     }
 
     .perigo {
@@ -101,4 +106,5 @@ ion-grid > ion-row {
         color: white;
         padding: 10px;
     }
+
 }
