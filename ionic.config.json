@@ -1,5 +1,7 @@
 {
   "name": "calcular-pj",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
